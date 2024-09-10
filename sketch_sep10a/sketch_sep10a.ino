@@ -4,7 +4,7 @@ int bluePin = 11;
 int count;
 int inputCount;
 int br = 115200;
-int shortPause = 2500;
+int shortPause = 250;
 String Prompt = "how many times do you want it to flash? ";
 
 
@@ -19,13 +19,25 @@ void loop() {
 Serial.println(Prompt);
 while(Serial.available()== 0){}
 inputCount = Serial.parseInt();
-count = 0;
+count = 1;
 while(count <= inputCount){
+  // red flash
   analogWrite(redPin, 255);
-  delay(shortPause);
+  delay(shortPause); 
   analogWrite(redPin, 0);
+  delay(shortPause);
+  //  green flash
+  analogWrite(greenPin, 255);
+  delay(shortPause); 
+  analogWrite(greenPin, 0);
+  delay(shortPause);
+  // blue flash
+  analogWrite(bluePin, 255);
+  delay(shortPause); 
+  analogWrite(bluePin, 0);
+  delay(shortPause);
   count = count+1;
-  Serial.println(count);
+  // Serial.println(count);
 }
 
 }
